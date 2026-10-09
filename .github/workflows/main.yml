@@ -1,22 +1,27 @@
----
-name: python code run
+name: Build and Test
+
 on:
   push:
     branches:
-      - main
+      - master
+
 jobs:
-  run-python:
+
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout repository
-        uses: actions/checkout@v4
-      - name: setup python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: run python file
-        run: python testing.py
-        
-      - name: run python file
-        run: python python.py
-        
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: python -m py_compile sum.py
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test
+        run: python sum.py
