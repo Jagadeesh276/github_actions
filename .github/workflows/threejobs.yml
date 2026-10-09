@@ -1,0 +1,30 @@
+---
+name: build,test ,deployee
+on:
+  push:
+    branches:
+      - main
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: python setup
+        uses: actions/setup-python@v5
+      - name: run job1
+        run: python sum.py
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: run a file
+        run: python testing.py
+  job3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: run a file
+        run: python python.py
