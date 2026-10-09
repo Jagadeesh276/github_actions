@@ -16,3 +16,7 @@ jobs:
           python-version: "3.12"
       - name: run python file
         run: python testing.py
+        
+      - name: run python file
+        run: python python.py
+        
